@@ -1,0 +1,170 @@
+!SESSION 2013-06-20 16:10:02.479 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ru_RU
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY org.eclipse.ui 4 4 2013-06-20 16:10:41.167
+!MESSAGE Referenced part does not exist yet: org.eclipse.cdt.ui.CView.
+
+!ENTRY org.eclipse.ui 4 4 2013-06-20 16:11:20.167
+!MESSAGE Referenced part does not exist yet: org.eclipse.cdt.ui.CView.
+
+!ENTRY com.ti.ccstudio.scripting.console 2 0 2013-06-20 16:11:46.401
+!MESSAGE Failed to setActiveScriptContext for class org.eclipse.rtsc.xdctools.model.ui.scripting.XGCONFScriptingService
+!STACK 0
+java.lang.AbstractMethodError
+	at com.ti.ccstudio.scripting.console.internal.Activator.setActiveScriptContext(Activator.java:94)
+	at com.ti.ccstudio.scripting.console.internal.Startup$1.safeRun(Startup.java:53)
+	at com.ti.ccstudio.rhino.SafeRunnable.run(SafeRunnable.java:27)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$1.run(RhinoThreadExecutor.java:67)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
+
+!ENTRY com.ti.ccstudio.scripting.console 2 0 2013-06-20 16:11:55.651
+!MESSAGE Failed to setActiveScriptContext for class org.eclipse.rtsc.xdctools.model.ui.scripting.XGCONFScriptingService
+!STACK 0
+java.lang.AbstractMethodError
+	at com.ti.ccstudio.scripting.console.internal.Activator.setActiveScriptContext(Activator.java:94)
+	at com.ti.ccstudio.scripting.console.internal.Startup$2$1.safeRun(Startup.java:100)
+	at com.ti.ccstudio.rhino.SafeRunnable.run(SafeRunnable.java:27)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$1.run(RhinoThreadExecutor.java:67)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
+
+!ENTRY com.ti.ccstudio.buildDefinitions.core 4 0 2013-06-20 16:12:07.870
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.buildDefinitions.core'.
+!STACK 0
+org.eclipse.cdt.managedbuilder.core.BuildException: Unrecognized option setting '--silicon_errata=CPU30' for tool 'com.ti.ccstudio.buildDefinitions.MSP430_4.0.exe.compilerDebug.1400181420'
+	at com.ti.ccstudio.devicemodel.Device.processOptionSettingsLine(Device.java:874)
+	at com.ti.ccstudio.devicemodel.Device.processOptionSettingsLine(Device.java:857)
+	at com.ti.ccstudio.devicemodel.Device.processOptionSettingsLines(Device.java:837)
+	at com.ti.ccstudio.devicemodel.Device.initializeBuildConfiguration(Device.java:722)
+	at com.ti.ccstudio.project.core.internal.initializer.CCSConfigurationInitializer.doInitializeDeviceSpecifiedBuildOptions(CCSConfigurationInitializer.java:259)
+	at com.ti.common.project.core.initializer.AConfigurationInitializer.internalInitializeBuildOptions(AConfigurationInitializer.java:275)
+	at com.ti.common.project.core.initializer.AConfigurationInitializer.internalInitializeBuildOptions(AConfigurationInitializer.java:249)
+	at com.ti.common.project.core.initializer.AConfigurationInitializer.initialize(AConfigurationInitializer.java:65)
+	at com.ti.common.project.core.initializer.AProjectInitializer.initialize(AProjectInitializer.java:35)
+	at com.ti.common.project.ui.internal.wizards.project.ProjectSettingsPage.onFinish(ProjectSettingsPage.java:611)
+	at com.ti.common.project.ui.internal.wizards.project.BaseNewProjectWizard.createProject(BaseNewProjectWizard.java:232)
+	at com.ti.common.project.ui.internal.wizards.project.BaseNewProjectWizard$1.execute(BaseNewProjectWizard.java:149)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.wizard.WizardDialog.run(WizardDialog.java:1029)
+	at com.ti.common.project.ui.internal.wizards.project.BaseNewProjectWizard.performFinish(BaseNewProjectWizard.java:146)
+	at com.ti.ccstudio.project.ui.internal.wizards.project.NewCCSProjectWizard.performFinish(NewCCSProjectWizard.java:44)
+	at org.eclipse.jface.wizard.WizardDialog.finishPressed(WizardDialog.java:827)
+	at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:432)
+	at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:624)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:240)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+	at org.eclipse.jface.window.Window.open(Window.java:801)
+	at org.eclipse.ui.internal.actions.NewWizardShortcutAction.run(NewWizardShortcutAction.java:135)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY com.ti.ccstudio.buildDefinitions.core 4 0 2013-06-20 16:12:08.073
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.buildDefinitions.core'.
+!STACK 0
+org.eclipse.cdt.managedbuilder.core.BuildException: Unrecognized option setting '--silicon_errata=CPU30' for tool 'com.ti.ccstudio.buildDefinitions.MSP430_4.0.exe.compilerRelease.195919851'
+	at com.ti.ccstudio.devicemodel.Device.processOptionSettingsLine(Device.java:874)
+	at com.ti.ccstudio.devicemodel.Device.processOptionSettingsLine(Device.java:857)
+	at com.ti.ccstudio.devicemodel.Device.processOptionSettingsLines(Device.java:837)
+	at com.ti.ccstudio.devicemodel.Device.initializeBuildConfiguration(Device.java:722)
+	at com.ti.ccstudio.project.core.internal.initializer.CCSConfigurationInitializer.doInitializeDeviceSpecifiedBuildOptions(CCSConfigurationInitializer.java:259)
+	at com.ti.common.project.core.initializer.AConfigurationInitializer.internalInitializeBuildOptions(AConfigurationInitializer.java:275)
+	at com.ti.common.project.core.initializer.AConfigurationInitializer.internalInitializeBuildOptions(AConfigurationInitializer.java:249)
+	at com.ti.common.project.core.initializer.AConfigurationInitializer.initialize(AConfigurationInitializer.java:65)
+	at com.ti.common.project.core.initializer.AProjectInitializer.initialize(AProjectInitializer.java:35)
+	at com.ti.common.project.ui.internal.wizards.project.ProjectSettingsPage.onFinish(ProjectSettingsPage.java:611)
+	at com.ti.common.project.ui.internal.wizards.project.BaseNewProjectWizard.createProject(BaseNewProjectWizard.java:232)
+	at com.ti.common.project.ui.internal.wizards.project.BaseNewProjectWizard$1.execute(BaseNewProjectWizard.java:149)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+	at org.eclipse.jface.wizard.WizardDialog.run(WizardDialog.java:1029)
+	at com.ti.common.project.ui.internal.wizards.project.BaseNewProjectWizard.performFinish(BaseNewProjectWizard.java:146)
+	at com.ti.ccstudio.project.ui.internal.wizards.project.NewCCSProjectWizard.performFinish(NewCCSProjectWizard.java:44)
+	at org.eclipse.jface.wizard.WizardDialog.finishPressed(WizardDialog.java:827)
+	at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:432)
+	at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:624)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:240)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+	at org.eclipse.jface.window.Window.open(Window.java:801)
+	at org.eclipse.ui.internal.actions.NewWizardShortcutAction.run(NewWizardShortcutAction.java:135)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY org.eclipse.cdt.core 1 0 2013-06-20 16:12:14.042
+!MESSAGE Indexed 'encenter' (1 sources, 19 headers) in 1,41 sec: 387 declarations; 441 references; 4 unresolved inclusions; 0 syntax errors; 7 unresolved names (0,84 %)
