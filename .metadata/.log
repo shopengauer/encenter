@@ -168,3 +168,36 @@ org.eclipse.cdt.managedbuilder.core.BuildException: Unrecognized option setting 
 
 !ENTRY org.eclipse.cdt.core 1 0 2013-06-20 16:12:14.042
 !MESSAGE Indexed 'encenter' (1 sources, 19 headers) in 1,41 sec: 387 declarations; 441 references; 4 unresolved inclusions; 0 syntax errors; 7 unresolved names (0,84 %)
+!SESSION 2013-06-20 16:18:33.635 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ru_RU
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.ccstudio.scripting.console 2 0 2013-06-20 16:18:50.307
+!MESSAGE Failed to setActiveScriptContext for class org.eclipse.rtsc.xdctools.model.ui.scripting.XGCONFScriptingService
+!STACK 0
+java.lang.AbstractMethodError
+	at com.ti.ccstudio.scripting.console.internal.Activator.setActiveScriptContext(Activator.java:94)
+	at com.ti.ccstudio.scripting.console.internal.Startup$1.safeRun(Startup.java:53)
+	at com.ti.ccstudio.rhino.SafeRunnable.run(SafeRunnable.java:27)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$1.run(RhinoThreadExecutor.java:67)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
+
+!ENTRY com.ti.ccstudio.scripting.console 2 0 2013-06-20 16:18:52.823
+!MESSAGE Failed to setActiveScriptContext for class org.eclipse.rtsc.xdctools.model.ui.scripting.XGCONFScriptingService
+!STACK 0
+java.lang.AbstractMethodError
+	at com.ti.ccstudio.scripting.console.internal.Activator.setActiveScriptContext(Activator.java:94)
+	at com.ti.ccstudio.scripting.console.internal.Startup$2$1.safeRun(Startup.java:100)
+	at com.ti.ccstudio.rhino.SafeRunnable.run(SafeRunnable.java:27)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$1.run(RhinoThreadExecutor.java:67)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
