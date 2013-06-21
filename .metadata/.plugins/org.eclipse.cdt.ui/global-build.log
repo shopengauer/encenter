@@ -15,3 +15,699 @@ C:\ti\ccsv5\utils\bin\gmake -k all
 ' '
 
 **** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+error #10056: symbol "UCS_Init" redefined: first defined in "./main.obj";
+   redefined in "./init_dev.obj"
+error #10056: symbol "PORT_Init" redefined: first defined in "./main.obj";
+   redefined in "./init_dev.obj"
+error #10010: errors encountered during linking; "encenter.out" not built
+gmake: *** [encenter.out] Error 1
+gmake: Target `all' not remade because of errors.
+
+>> Compilation failure
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+"../init_dev.c", line 16: error #20: identifier "P1DIR" is undefined
+"../init_dev.c", line 17: error #20: identifier "P1OUT" is undefined
+
+>> Compilation failure
+"../init_dev.c", line 19: error #20: identifier "PJOUT" is undefined
+"../init_dev.c", line 20: error #20: identifier "PJDIR" is undefined
+"../init_dev.c", line 22: error #20: identifier "P2SEL" is undefined
+"../init_dev.c", line 23: error #20: identifier "P2OUT" is undefined
+"../init_dev.c", line 24: error #20: identifier "P2DIR" is undefined
+"../init_dev.c", line 25: error #20: identifier "P2REN" is undefined
+"../init_dev.c", line 28: error #20: identifier "P3DIR" is undefined
+"../init_dev.c", line 29: error #20: identifier "P3OUT" is undefined
+"../init_dev.c", line 41: error #20: identifier "P5SEL" is undefined
+"../init_dev.c", line 49: error #20: identifier "UCSCTL6" is undefined
+"../init_dev.c", line 49: error #20: identifier "XCAP_3" is undefined
+"../init_dev.c", line 51: error #20: identifier "XT1OFF" is undefined
+"../init_dev.c", line 52: error #20: identifier "XT1DRIVE_3" is undefined
+"../init_dev.c", line 56: error #20: identifier "UCSCTL7" is undefined
+"../init_dev.c", line 56: error #20: identifier "XT2OFFG" is undefined
+"../init_dev.c", line 56: error #20: identifier "XT1LFOFFG" is undefined
+"../init_dev.c", line 56: error #20: identifier "DCOFFG" is undefined
+"../init_dev.c", line 58: error #20: identifier "SFRIFG1" is undefined
+"../init_dev.c", line 58: error #20: identifier "OFIFG" is undefined
+"../init_dev.c", line 59: error #20: identifier "SFRIFG1" is undefined
+"../init_dev.c", line 59: error #20: identifier "OFIFG" is undefined
+"../init_dev.c", line 62: error #20: identifier "UCSCTL4" is undefined
+"../init_dev.c", line 62: error #20: identifier "SELA__XT1CLK" is undefined
+"../init_dev.c", line 62: error #20: identifier "SELS__DCOCLKDIV" is undefined
+"../init_dev.c", line 62: error #20: identifier "SELM__DCOCLKDIV" is undefined
+27 errors detected in the compilation of "../init_dev.c".
+gmake: *** [init_dev.obj] Error 1
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+'Finished building: ../main.c'
+' '
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+error #10056: symbol "UCS_Init" redefined: first defined in "./main.obj";
+   redefined in "./init_dev.obj"
+error #10056: symbol "PORT_Init" redefined: first defined in "./main.obj";
+   redefined in "./init_dev.obj"
+error #10010: errors encountered during linking; "encenter.out" not built
+
+>> Compilation failure
+gmake: *** [encenter.out] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 13: warning #225-D: function declared implicitly
+"../main.c", line 14: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 16: warning #225-D: function declared implicitly
+"../main.c", line 17: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+
+ undefined first referenced
+  symbol       in file     
+ --------- ----------------
+ SetVCore  ./main.obj      
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "encenter.out" not built
+gmake: *** [encenter.out] Error 1
+gmake: Target `all' not remade because of errors.
+
+>> Compilation failure
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 21: error #20: identifier "LIS_INT1_INIT" is undefined
+"../main.c", line 22: warning #225-D: function declared implicitly
+"../main.c", line 24: warning #225-D: function declared implicitly
+"../main.c", line 29: error #66: expected a ";"
+"../main.c", line 44: error #20: identifier "Inner0" is undefined
+"../main.c", line 44: warning #225-D: function declared implicitly
+"../main.c", line 44: error #20: identifier "LIS3DH_INT1_SRC" is undefined
+"../main.c", line 45: warning #225-D: function declared implicitly
+"../main.c", line 45: error #20: identifier "LIS3DH_INT1_CFG" is undefined
+"../main.c", line 46: error #20: identifier "redLED1TOGG" is undefined
+6 errors detected in the compilation of "../main.c".
+
+>> Compilation failure
+gmake: *** [main.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 21: error #20: identifier "LIS_INT1_INIT" is undefined
+"../main.c", line 22: warning #225-D: function declared implicitly
+"../main.c", line 24: warning #225-D: function declared implicitly
+"../main.c", line 29: error #66: expected a ";"
+"../main.c", line 44: warning #225-D: function declared implicitly
+"../main.c", line 44: error #20: identifier "LIS3DH_INT1_SRC" is undefined
+"../main.c", line 45: warning #225-D: function declared implicitly
+"../main.c", line 45: error #20: identifier "LIS3DH_INT1_CFG" is undefined
+"../main.c", line 46: error #20: identifier "redLED1TOGG" is undefined
+5 errors detected in the compilation of "../main.c".
+
+>> Compilation failure
+gmake: *** [main.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 21: error #20: identifier "LIS_INT1_INIT" is undefined
+"../main.c", line 22: warning #225-D: function declared implicitly
+"../main.c", line 24: warning #225-D: function declared implicitly
+"../main.c", line 29: error #66: expected a ";"
+"../main.c", line 44: warning #225-D: function declared implicitly
+"../main.c", line 44: error #20: identifier "LIS3DH_INT1_SRC" is undefined
+"../main.c", line 45: warning #225-D: function declared implicitly
+"../main.c", line 45: error #20: identifier "LIS3DH_INT1_CFG" is undefined
+"../main.c", line 46: error #20: identifier "redLED1TOGG" is undefined
+5 errors detected in the compilation of "../main.c".
+
+>> Compilation failure
+gmake: *** [main.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 21: error #20: identifier "LIS_INT1_INIT" is undefined
+"../main.c", line 22: warning #225-D: function declared implicitly
+"../main.c", line 24: warning #225-D: function declared implicitly
+"../main.c", line 29: error #66: expected a ";"
+"../main.c", line 44: warning #225-D: function declared implicitly
+"../main.c", line 44: error #20: identifier "LIS3DH_INT1_SRC" is undefined
+"../main.c", line 45: warning #225-D: function declared implicitly
+"../main.c", line 45: error #20: identifier "LIS3DH_INT1_CFG" is undefined
+"../main.c", line 46: error #20: identifier "redLED1TOGG" is undefined
+5 errors detected in the compilation of "../main.c".
+
+>> Compilation failure
+gmake: *** [main.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+"../init_dev.c", line 427: error #66: expected a ";"
+1 error detected in the compilation of "../init_dev.c".
+
+>> Compilation failure
+gmake: *** [init_dev.obj] Error 1
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+error #10056: symbol "Inner0" redefined: first defined in "./main.obj";
+   redefined in "./init_dev.obj"
+error #10056: symbol "k" redefined: first defined in "./main.obj"; redefined in
+   "./init_dev.obj"
+error #10010: errors encountered during linking; "encenter.out" not built
+
+>> Compilation failure
+gmake: *** [encenter.out] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 19: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../init_dev.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="init_dev.pp"  "../init_dev.c"
+'Finished building: ../init_dev.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project encenter ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430/include" --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 14: warning #225-D: function declared implicitly
+"../main.c", line 18: warning #225-D: function declared implicitly
+"../main.c", line 20: warning #225-D: function declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: encenter.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430/bin/cl430" -vmspx --abi=coffabi -g --define=__CC430F5137__ --diag_warning=225 --display_error_number --silicon_errata=CPU18 --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --printf_support=minimal -z -m"encenter.map" --stack_size=80 --heap_size=80 --use_hw_mpy=F5 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430/lib" -i"C:/ti/ccsv5/tools/compiler/msp430/include" --reread_libs --warn_sections --rom_model -o "encenter.out"  "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+<Linking>
+'Finished building target: encenter.out'
+' '
+
+**** Build Finished ****

@@ -1,0 +1,28 @@
+/*
+ * main.c
+ */
+
+//#include "cc430x513x.h"
+#include "init_dev.c"
+
+
+void main(void)
+{
+
+	WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+	PORT_Init();
+	UCS_Init();
+
+
+
+	//SetVCore(2);
+
+
+
+	    __bis_SR_register(LPM3+GIE);//
+
+
+	  while (1);
+
+	
+}

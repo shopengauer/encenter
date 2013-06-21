@@ -1,0 +1,17 @@
+/*
+ * init_dev.h
+ *
+ *  Created on: 21.06.2013
+ *      Author: V.Pavlov
+ */
+
+#ifndef INIT_DEV_H_
+#define INIT_DEV_H_
+
+
+
+
+void PORT_Init(void);
+void UCS_Init(void);
+
+#endif /* INIT_DEV_H_ */

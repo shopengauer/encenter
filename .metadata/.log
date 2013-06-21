@@ -201,3 +201,88 @@ java.lang.AbstractMethodError
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.lang.Thread.run(Unknown Source)
 	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
+!SESSION 2013-06-21 13:51:19.140 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ru_RU
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.ccstudio.scripting.console 2 0 2013-06-21 13:53:04.609
+!MESSAGE Failed to setActiveScriptContext for class org.eclipse.rtsc.xdctools.model.ui.scripting.XGCONFScriptingService
+!STACK 0
+java.lang.AbstractMethodError
+	at com.ti.ccstudio.scripting.console.internal.Activator.setActiveScriptContext(Activator.java:94)
+	at com.ti.ccstudio.scripting.console.internal.Startup$1.safeRun(Startup.java:53)
+	at com.ti.ccstudio.rhino.SafeRunnable.run(SafeRunnable.java:27)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$1.run(RhinoThreadExecutor.java:67)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
+
+!ENTRY com.ti.ccstudio.scripting.console 2 0 2013-06-21 13:53:05.375
+!MESSAGE Failed to setActiveScriptContext for class org.eclipse.rtsc.xdctools.model.ui.scripting.XGCONFScriptingService
+!STACK 0
+java.lang.AbstractMethodError
+	at com.ti.ccstudio.scripting.console.internal.Activator.setActiveScriptContext(Activator.java:94)
+	at com.ti.ccstudio.scripting.console.internal.Startup$2$1.safeRun(Startup.java:100)
+	at com.ti.ccstudio.rhino.SafeRunnable.run(SafeRunnable.java:27)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$1.run(RhinoThreadExecutor.java:67)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+	at com.ti.ccstudio.rhino.internal.RhinoThreadExecutor$RhinoThread.run(RhinoThreadExecutor.java:88)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2013-06-21 14:56:23.187
+!MESSAGE DS_ERROR: MSP430: Trouble Writing Memory Block at 0xfffe on Page 0 of Length 0x2: Could not write device memory
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2013-06-21 14:56:23.218
+!MESSAGE DS_ERROR: MSP430: GEL: File: D:\ GitHub\encenter\encenter\Debug\encenter.out: Load failed.
+
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2013-06-21 14:56:23.359
+!MESSAGE Request for monitor: 'RequestMonitor (com.ti.ccstudio.leru.model.LervmBuddy$1@32256d): Status ERROR: com.ti.ccstudio.debug code=20001  com.ti.ccstudio.debug.launch.LaunchValidationException' resulted in an error.
+!SUBENTRY 1 com.ti.ccstudio.debug 4 20001 2013-06-21 14:56:23.359
+!MESSAGE 
+!STACK 0
+com.ti.ccstudio.debug.launch.LaunchValidationException
+	at com.ti.ccstudio.debug.service.ApplicationService$2$1.handleFailure(ApplicationService.java:245)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:355)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:298)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2013-06-21 14:57:03.718
+!MESSAGE DS_ERROR: MSP430: Trouble Writing Memory Block at 0x8000 on Page 0 of Length 0x26c: Could not write device memory
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2013-06-21 14:57:03.734
+!MESSAGE DS_ERROR: MSP430: GEL: File: D:\ GitHub\encenter\encenter\Debug\encenter.out: Load failed.
+
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2013-06-21 14:57:03.812
+!MESSAGE Request for monitor: 'RequestMonitor (com.ti.ccstudio.leru.model.LervmBuddy$1@164f17b): Status ERROR: com.ti.ccstudio.debug code=20001  com.ti.ccstudio.debug.launch.LaunchValidationException' resulted in an error.
+!SUBENTRY 1 com.ti.ccstudio.debug 4 20001 2013-06-21 14:57:03.812
+!MESSAGE 
+!STACK 0
+com.ti.ccstudio.debug.launch.LaunchValidationException
+	at com.ti.ccstudio.debug.service.ApplicationService$2$1.handleFailure(ApplicationService.java:245)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:355)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:298)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)

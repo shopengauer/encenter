@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.0.0                      
 ******************************************************************************
->> Linked Thu Jun 20 16:20:54 2013
+>> Linked Fri Jun 21 15:43:16 2013
 
 OUTPUT FILE NAME:   <encenter.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00008072
+ENTRY POINT SYMBOL: "_c_int00"  address: 00008388
 
 
 MEMORY CONFIGURATION
@@ -18,8 +18,8 @@ MEMORY CONFIGURATION
   INFOC                 00001880   00000080  00000000  00000080  RWIX
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
-  RAM                   00001c00   00000ffe  00000060  00000f9e  RWIX
-  FLASH                 00008000   00007f80  0000009e  00007ee2  RWIX
+  RAM                   00001c00   00000ffe  00000064  00000f9a  RWIX
+  FLASH                 00008000   00007f80  000003b4  00007bcc  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
   INT02                 0000ff84   00000002  00000000  00000002  RWIX
@@ -69,7 +69,7 @@ MEMORY CONFIGURATION
   INT46                 0000ffdc   00000002  00000000  00000002  RWIX
   INT47                 0000ffde   00000002  00000000  00000002  RWIX
   INT48                 0000ffe0   00000002  00000000  00000002  RWIX
-  INT49                 0000ffe2   00000002  00000000  00000002  RWIX
+  INT49                 0000ffe2   00000002  00000002  00000000  RWIX
   INT50                 0000ffe4   00000002  00000000  00000002  RWIX
   INT51                 0000ffe6   00000002  00000000  00000002  RWIX
   INT52                 0000ffe8   00000002  00000000  00000002  RWIX
@@ -95,20 +95,34 @@ section   page    origin      length       input sections
 
 .pinit     0    00008000    00000000     UNINITIALIZED
 
-.bss       0    00001c00    00000010     UNINITIALIZED
+.bss       0    00001c00    00000014     UNINITIALIZED
                   00001c00    00000008     rts430x.lib : _lock.obj (.bss)
                   00001c08    00000008                 : boot.obj (.bss)
+                  00001c10    00000004     init_dev.obj (.bss)
 
 .stack     0    00002bac    00000050     UNINITIALIZED
                   00002bac    00000002     rts430x.lib : boot.obj (.stack)
                   00002bae    0000004e     --HOLE--
 
-.text      0    00008000    0000009e     
-                  00008000    00000072     main.obj (.text:main)
-                  00008072    00000022     rts430x.lib : boot.obj (.text:_isr:_c_int00_noinit_noexit)
-                  00008094    00000004                 : pre_init.obj (.text:_system_pre_init)
-                  00008098    00000004                 : exit.obj (.text:abort)
-                  0000809c    00000002                 : _lock.obj (.text:_nop)
+.text      0    00008000    000003b4     
+                  00008000    000000d4     init_dev.obj (.text:SetVCoreUp)
+                  000080d4    0000009a     init_dev.obj (.text:SetVCoreDown)
+                  0000816e    0000005c     init_dev.obj (.text:LIS3DH_Config)
+                  000081ca    00000042     init_dev.obj (.text:I2C_LIS3DH_Init)
+                  0000820c    00000042     init_dev.obj (.text:I2C_Mems_Read_Reg)
+                  0000824e    0000003c     init_dev.obj (.text:I2C_Mems_Write_Reg)
+                  0000828a    0000003a     init_dev.obj (.text:SetVCore)
+                  000082c4    00000036     init_dev.obj (.text:LIS3DH_Start)
+                  000082fa    00000036     init_dev.obj (.text:PORT_Init)
+                  00008330    00000030     init_dev.obj (.text:_isr:PORT1_ISR)
+                  00008360    00000028     main.obj (.text:main)
+                  00008388    00000022     rts430x.lib : boot.obj (.text:_isr:_c_int00_noinit_noexit)
+                  000083aa    00000004                 : pre_init.obj (.text:_system_pre_init)
+                  000083ae    00000004                 : exit.obj (.text:abort)
+                  000083b2    00000002                 : _lock.obj (.text:_nop)
+
+.int49     0    0000ffe2    00000002     
+                  0000ffe2    00000002     init_dev.obj (.int49)
 
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x.lib : boot.obj (.reset)
@@ -217,7 +231,7 @@ address    name
 000009c4   AESASTAT
 000009c5   AESASTAT_H
 000009c4   AESASTAT_L
-00008098   C$$EXIT
+000083ae   C$$EXIT
 000008c0   CBCTL0
 000008c1   CBCTL0_H
 000008c0   CBCTL0_L
@@ -297,6 +311,12 @@ address    name
 00000146   FCTL4
 00000147   FCTL4_H
 00000146   FCTL4_L
+000081ca   I2C_LIS3DH_Init
+0000820c   I2C_Mems_Read_Reg
+0000824e   I2C_Mems_Write_Reg
+00001c10   Inner0
+0000816e   LIS3DH_Config
+000082c4   LIS3DH_Start
 000004c4   MAC
 000004da   MAC32H
 000004db   MAC32H_H
@@ -479,6 +499,8 @@ address    name
 0000012e   PMMRIE
 0000012f   PMMRIE_H
 0000012e   PMMRIE_L
+00008330   PORT1_ISR
+000082fa   PORT_Init
 00000158   RCCTL0
 00000159   RCCTL0_H
 00000158   RCCTL0_L
@@ -660,6 +682,7 @@ address    name
 0000019a   SYSUNIV
 0000019b   SYSUNIV_H
 0000019a   SYSUNIV_L
+0000828a   SetVCore
 00000352   TA0CCR0
 00000354   TA0CCR1
 00000356   TA0CCR2
@@ -760,26 +783,27 @@ ffffffff   __binit__
 00001c00   __bss__
 ffffffff   __c_args__
 ffffffff   __cinit__
-00001c10   __end__
-0000809e   __etext__
+00001c14   __end__
+000083b4   __etext__
 ffffffff   __pinit__
 00008000   __text__
-00008072   _c_int00
-00008072   _c_int00_noinit_noexit
+00008388   _c_int00
+00008388   _c_int00_noinit_noexit
 00001c08   _cleanup_ptr
 00001c0c   _dtors_ptr
 00001c00   _lock
-0000809c   _nop
+000083b2   _nop
 0000fffe   _reset_vector
 00002bac   _stack
-00008094   _system_pre_init
+000083aa   _system_pre_init
 00001c04   _unlock
-00008098   abort
+000083ae   abort
 ffffffff   binit
 ffffffff   cinit
-00001c10   end
-0000809e   etext
-00008000   main
+00001c14   end
+000083b4   etext
+00001c12   k
+00008360   main
 ffffffff   pinit
 
 
@@ -1427,21 +1451,31 @@ address    name
 00001c04   _unlock
 00001c08   _cleanup_ptr
 00001c0c   _dtors_ptr
-00001c10   __end__
-00001c10   end
+00001c10   Inner0
+00001c12   k
+00001c14   __end__
+00001c14   end
 00002bac   _stack
 00002bfc   __STACK_END
 00008000   .text
 00008000   __text__
-00008000   main
-00008072   _c_int00
-00008072   _c_int00_noinit_noexit
-00008094   _system_pre_init
-00008098   C$$EXIT
-00008098   abort
-0000809c   _nop
-0000809e   __etext__
-0000809e   etext
+0000816e   LIS3DH_Config
+000081ca   I2C_LIS3DH_Init
+0000820c   I2C_Mems_Read_Reg
+0000824e   I2C_Mems_Write_Reg
+0000828a   SetVCore
+000082c4   LIS3DH_Start
+000082fa   PORT_Init
+00008330   PORT1_ISR
+00008360   main
+00008388   _c_int00
+00008388   _c_int00_noinit_noexit
+000083aa   _system_pre_init
+000083ae   C$$EXIT
+000083ae   abort
+000083b2   _nop
+000083b4   __etext__
+000083b4   etext
 0000fffe   _reset_vector
 ffffffff   __binit__
 ffffffff   __c_args__
@@ -1451,4 +1485,4 @@ ffffffff   binit
 ffffffff   cinit
 ffffffff   pinit
 
-[663 symbols]
+[673 symbols]

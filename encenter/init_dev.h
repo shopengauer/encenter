@@ -1,0 +1,263 @@
+/*
+ * init_dev.h
+ *
+ *  Created on: 21.06.2013
+ *      Author: V.Pavlov
+ */
+
+#ifndef INIT_DEV_H_
+#define INIT_DEV_H_
+
+
+#include "cc430x513x.h"
+
+void PORT_Init(void);
+void UCS_Init(void);
+void PMM_Init(void);
+void LIS3DH_Start(void);
+
+int Inner0,k;
+
+
+#ifndef HAL_PMM_H
+#define HAL_PMM_H
+
+
+#include <stdint.h>
+#include "HAL_MACROS.h"
+
+/*******************************************************************************
+ * Macros
+ ******************************************************************************/
+#define ENABLE_SVSL()        st(PMMCTL0_H = 0xA5; SVSMLCTL |= SVSLE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVSL()       st(PMMCTL0_H = 0xA5; SVSMLCTL &= ~SVSLE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVML()        st(PMMCTL0_H = 0xA5; SVSMLCTL |= SVMLE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVML()       st(PMMCTL0_H = 0xA5; SVSMLCTL &= ~SVMLE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVSH()        st(PMMCTL0_H = 0xA5; SVSMHCTL |= SVSHE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVSH()       st(PMMCTL0_H = 0xA5; SVSMHCTL &= ~SVSHE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVMH()        st(PMMCTL0_H = 0xA5; SVSMHCTL |= SVMHE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVMH()       st(PMMCTL0_H = 0xA5; SVSMHCTL &= ~SVMHE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVSL_SVML()   st(PMMCTL0_H = 0xA5; SVSMLCTL |= (SVSLE + SVMLE); PMMCTL0_H = 0x00; )
+#define DISABLE_SVSL_SVML()  st(PMMCTL0_H = 0xA5; SVSMLCTL &= ~(SVSLE + SVMLE); PMMCTL0_H = 0x00; )
+#define ENABLE_SVSH_SVMH()   st(PMMCTL0_H = 0xA5; SVSMHCTL |= (SVSHE + SVMHE); PMMCTL0_H = 0x00; )
+#define DISABLE_SVSH_SVMH()  st(PMMCTL0_H = 0xA5; SVSMHCTL &= ~(SVSHE + SVMHE); PMMCTL0_H = 0x00; )
+
+#define ENABLE_SVSL_RESET()       st(PMMCTL0_H = 0xA5; PMMRIE |= SVSLPE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVSL_RESET()      st(PMMCTL0_H = 0xA5; PMMRIE &= ~SVSLPE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVML_INTERRUPT()   st(PMMCTL0_H = 0xA5; PMMRIE |= SVMLIE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVML_INTERRUPT()  st(PMMCTL0_H = 0xA5; PMMRIE &= ~SVMLIE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVSH_RESET()       st(PMMCTL0_H = 0xA5; PMMRIE |= SVSHPE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVSH_RESET()      st(PMMCTL0_H = 0xA5; PMMRIE &= ~SVSHPE; PMMCTL0_H = 0x00; )
+#define ENABLE_SVMH_INTERRUPT()   st(PMMCTL0_H = 0xA5; PMMRIE |= SVMHIE; PMMCTL0_H = 0x00; )
+#define DISABLE_SVMH_INTERRUPT()  st(PMMCTL0_H = 0xA5; PMMRIE &= ~SVMHIE; PMMCTL0_H = 0x00; )
+#define CLEAR_PMM_IFGS()          st(PMMCTL0_H = 0xA5; PMMIFG = 0; PMMCTL0_H = 0x00; )
+
+// These settings use SVSH/LACE = 0
+#define SVSL_ENABLED_IN_LPM_FAST_WAKE()  st( \
+        PMMCTL0_H = 0xA5; SVSMLCTL |= (SVSLFP + SVSLMD); SVSMLCTL &= ~SVSMLACE; PMMCTL0_H = 0x00; )
+#define SVSL_ENABLED_IN_LPM_SLOW_WAKE()  st(PMMCTL0_H = 0xA5; SVSMLCTL |= SVSLMD; SVSMLCTL &= \
+                                                ~(SVSLFP + SVSMLACE); PMMCTL0_H = 0x00; )
+
+#define SVSL_DISABLED_IN_LPM_FAST_WAKE() st(PMMCTL0_H = 0xA5; SVSMLCTL |= SVSLFP; SVSMLCTL &= \
+                                                ~(SVSLMD + SVSMLACE); PMMCTL0_H = 0x00; )
+#define SVSL_DISABLED_IN_LPM_SLOW_WAKE() st(PMMCTL0_H = 0xA5; SVSMLCTL &= \
+                                                ~(SVSLFP + SVSMLACE + SVSLMD); PMMCTL0_H = 0x00; )
+
+#define SVSH_ENABLED_IN_LPM_NORM_PERF()  st(PMMCTL0_H = 0xA5; SVSMHCTL |= SVSHMD; SVSMHCTL &= \
+                                                ~(SVSMHACE + SVSHFP); PMMCTL0_H = 0x00; )
+#define SVSH_ENABLED_IN_LPM_FULL_PERF()  st( \
+        PMMCTL0_H = 0xA5; SVSMHCTL |= (SVSHMD + SVSHFP); SVSMHCTL &= ~SVSMHACE; PMMCTL0_H = 0x00; )
+
+#define SVSH_DISABLED_IN_LPM_NORM_PERF() st(PMMCTL0_H = 0xA5; SVSMHCTL &= \
+                                                ~(SVSMHACE + SVSHFP + SVSHMD); PMMCTL0_H = 0x00; )
+#define SVSH_DISABLED_IN_LPM_FULL_PERF() st(PMMCTL0_H = 0xA5; SVSMHCTL |= SVSHFP; SVSMHCTL &= \
+                                                ~(SVSMHACE + SVSHMD); PMMCTL0_H = 0x00; )
+
+// These setting use SVSH/LACE = 1
+#define SVSL_OPTIMIZED_IN_LPM_FAST_WAKE() st(PMMCTL0_H = 0xA5; SVSMLCTL |= \
+                                                 (SVSLFP + SVSLMD + SVSMLACE); PMMCTL0_H = 0x00; )
+#define SVSH_OPTIMIZED_IN_LPM_FULL_PERF() st(PMMCTL0_H = 0xA5; SVSMHCTL |= \
+                                                 (SVSHMD + SVSHFP + SVSMHACE); PMMCTL0_H = 0x00; )
+
+/*******************************************************************************
+ * Defines
+ ******************************************************************************/
+#define PMM_STATUS_OK     0
+#define PMM_STATUS_ERROR  1
+
+
+
+#define LIS_INT1_INIT       P1DIR &= ~BIT0; P1IES &= BIT0 ;P1IFG = 0x0001; P1OUT |= BIT0; P1IE |= BIT0; //    LIS_INT1_INIT  Set up the LIS3DH as interruptible          //
+#define LIS_INT1_CLEAR      P1DIR &= ~BIT0; P1IES &= BIT0; P1IFG  = 0x0000;; P1OUT |= BIT0; P1IE &= (~ BIT0);
+
+
+#define redLED1ON                       P3OUT |= 0x20;          P3DIR |= 0x20;
+#define redLED1OFF                  P3OUT &= (~0x20);   P3DIR |= 0x20;
+#define redLED1TOGG                 P3OUT ^= 0x20;              P3DIR |= 0x20;
+
+#define WISMO228_3V6ON          P2OUT &= (~0x08);       P2DIR |= 0x08;
+#define WISMO228_3V6OFF         P2OUT |= 0x08;          P2DIR |= 0x08;
+
+
+
+#define CS_LIS3DH_ON   P1DIR |= BIT4; P1OUT |= BIT4;// P1.4
+#define CS_LIS3DH_OFF   P1DIR |= BIT4; P1OUT &= (~BIT4);// P1.4
+
+
+#define LIS3DH_ADDR       0x18
+#define M24C64_ADDR       0x53
+
+#define UCB0SDA           BIT3                  // UCB0SDA pin
+#define UCB0SCL           BIT2                  // UCB0SCL pin
+#define UCA0RXD           BIT5                  // UCA0RXD pin
+#define UCA0TXD           BIT6                  // UCA0TXD pin
+#define BUTTON            BIT1                  // P1.1
+#define LED               BIT0                   //P1.0
+           //P2.3
+
+#define BUTTON_INIT  P1DIR &= ~BUTTON ;P1REN |= BUTTON;P1IES &= BUTTON;P1IFG = 0;P1OUT |= BUTTON;P1IE  |= BUTTON;
+
+#define SADW   0x03
+#define SADR   0x31
+
+void I2C_Mems_Write_Reg(unsigned int reg, unsigned int data);
+unsigned int I2C_Mems_Read_Reg(unsigned int Reg );
+
+void I2C_LIS3DH_Init(void);
+void LIS3DH_Config(void);
+void I2C_M24C64_Init(void);
+void Port_Init(void);
+
+
+
+
+// CONTROL REGISTER 1
+#define LIS3DH_CTRL_REG1                                0x20
+#define LIS3DH_ODR_BIT                                  BIT4
+#define LIS3DH_LPEN                                     BIT3
+#define LIS3DH_ZEN                                      BIT2
+#define LIS3DH_YEN                                      BIT1
+#define LIS3DH_XEN                                      BIT0
+
+#define LIS3DHODR1Hz         0x10
+#define LIS3DHODR10Hz        0x20
+#define LIS3DHODR25Hz        0x30
+#define LIS3DHODR50Hz        0x40
+#define LIS3DHODR100Hz       0x50
+#define LIS3DHODR200Hz       0x60
+#define LIS3DHODR400Hz       0x70
+#define LIS3DHODR1600Hz      0x80
+#define LIS3DHODR5000Hz      0x90
+
+
+//CONTROL REGISTER 2
+#define LIS3DH_CTRL_REG2                                0x21
+#define LIS3DH_HPM                              BIT6
+#define LIS3DH_HPCF                                     BIT4
+#define LIS3DH_FDS                                      BIT3
+#define LIS3DH_HPCLICK                                  BIT2
+#define LIS3DH_HPIS2                                    BIT1
+#define LIS3DH_HPIS1                                    BIT0
+
+//CONTROL REGISTER 3
+#define LIS3DH_CTRL_REG3                                0x22
+#define LIS3DH_I1_CLICK                         BIT7
+#define LIS3DH_I1_AOI1                                  BIT6
+#define LIS3DH_I1_AOI2                                  BIT5
+#define LIS3DH_I1_DRDY1                         BIT4
+#define LIS3DH_I1_DRDY2                         BIT3
+#define LIS3DH_I1_WTM                                   BIT2
+#define LIS3DH_I1_ORUN                                  BIT1
+
+//CONTROL REGISTER 6
+#define LIS3DH_CTRL_REG6                                0x25
+#define LIS3DH_I2_CLICK                         BIT7
+#define LIS3DH_I2_INT1                                  BIT6
+#define LIS3DH_I2_BOOT                          BIT4
+#define LIS3DH_H_LACTIVE                                BIT1
+
+//TEMPERATURE CONFIG REGISTER
+#define LIS3DH_TEMP_CFG_REG                             0x1F
+#define LIS3DH_ADC_PD                                   BIT7
+#define LIS3DH_TEMP_EN                                  BIT6
+
+//CONTROL REGISTER 4
+#define LIS3DH_CTRL_REG4                                0x23
+#define LIS3DH_BDU                                      BIT7
+#define LIS3DH_BLE                                      BIT6
+#define LIS3DH_FS                                       BIT4
+#define LIS3DH_HR                                       BIT3
+#define LIS3DH_ST                                       BIT1
+#define LIS3DH_SIM                                      BIT0
+
+//CONTROL REGISTER 5
+#define LIS3DH_CTRL_REG5                                0x24
+#define LIS3DH_BOOT                                    BIT7
+#define LIS3DH_FIFO_EN                                 BIT6
+#define LIS3DH_LIR_INT1                                BIT3
+#define LIS3DH_D4D_INT1                                BIT2
+
+//REFERENCE/DATA_CAPTURE
+#define LIS3DH_REFERENCE_REG                            0x26
+#define LIS3DH_REF                                      BIT0
+
+//STATUS_REG_AXIES
+#define LIS3DH_STATUS_REG                               0x27
+#define LIS3DH_ZYXOR                                   BIT7
+#define LIS3DH_ZOR                                     BIT6
+#define LIS3DH_YOR                                     BIT5
+#define LIS3DH_XOR                                     BIT4
+#define LIS3DH_ZYXDA                                   BIT3
+#define LIS3DH_ZDA                                     BIT2
+#define LIS3DH_YDA                                     BIT1
+#define LIS3DH_XDA                                     BIT0
+
+//STATUS_REG_AUX
+#define LIS3DH_STATUS_AUX                               0x07
+
+//INTERRUPT 1 CONFIGURATION
+#define LIS3DH_INT1_CFG                         0x30
+#define LIS3DH_ANDOR                                   BIT7
+#define LIS3DH_INT_6D                                  BIT6
+#define LIS3DH_ZHIE                                    BIT5
+#define LIS3DH_ZLIE                                    BIT4
+#define LIS3DH_YHIE                                    BIT3
+#define LIS3DH_YLIE                                    BIT2
+#define LIS3DH_XHIE                                    BIT1
+#define LIS3DH_XLIE                                    BIT0
+
+//FIFO CONTROL REGISTER
+#define LIS3DH_FIFO_CTRL_REG                           0x2E
+#define LIS3DH_FM                                      BIT6
+#define LIS3DH_TR                                      BIT5
+#define LIS3DH_FTH                                     BIT0
+
+
+#define  LIS3DH_INT_THS                                 0x32
+#define  LIS3DH_INT1_DURATION                           0x33
+#define  LIS3DH_INT1_CFG                                0x30
+#define  LIS3DH_INT1_SRC                                0x31
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern uint16_t SetVCore(uint8_t level);
+
+
+
+
+#endif /* HAL_PMM_H */
+
+
+
+#endif /* INIT_DEV_H_ */

@@ -3,67 +3,32 @@
  */
 
 #include "cc430x513x.h"
+//#include "init_dev.c"
+
 
 void main(void)
 {
 
 	WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
 
+	 SetVCore(2);
+	 //PMMCTL0_H = 0xA5;
+	// PMMCTL0_L |= PMMHPMRE_L;
+	// PMMCTL0_H = 0x00;
+	 PORT_Init();
+//	 UCS_Init();
+	 LIS3DH_Start();
 
-	  //SetVCore(2);
-
-
-	   P1DIR = 0x1c; // Led out
-	   P1OUT = 0x1c;
-
-	   PJOUT = 0x00;////////////////////////0x00
-	   PJDIR = 0xff;//////////////////////// 0xff
-
-	   P2SEL = 0x00;
-	   P2OUT = 0x08;
-	   P2DIR = 0xff;
-	   P2REN = 0x00;
-
-
-	   P3DIR = 0x00;
-	   P3OUT = 0xff;
-
-	  // P5SEL = 0x03;
-	 //  P5DIR = 0x03;
-	 //  P3OUT = 0x00;
-
-
-	   // PMMCTL0_H = 0xA5;
-	   //   SVSMHCTL = 0;
-	   //   SVSMLCTL = 0;
-	   //   PMMCTL0_H = 0x00;
-
-	      P5SEL |= 0x03;                            // Port select XT1
-
-
-	      UCSCTL6 |= XCAP_3;                        // Internal load cap
-	      // UCSCTL6 &= ~XT2OFF;                       // Turn on XT2 even if RF core in SLEEP
-	     UCSCTL6 &= ~XT1OFF;
-	     UCSCTL6 &= ~XT1DRIVE_3;
-	     // Loop until XT1,XT2 & DCO stabilizes
-	       do
-	       {
-	         UCSCTL7 &= ~(XT2OFFG + XT1LFOFFG + DCOFFG);
-	                                                 // Clear XT2,XT1,DCO fault flags
-	         SFRIFG1 &= ~OFIFG;                      // Clear fault flags
-	       }while (SFRIFG1&OFIFG);                   // Test oscillator fault flag
-
-	       // Select SMCLK, ACLK source and DCO source
-	       UCSCTL4 = SELA__XT1CLK + SELS__DCOCLKDIV + SELM__DCOCLKDIV;
+	//SetVCore(2);
 
 
 
-
-
-	    __bis_SR_register(LPM3+GIE);//
-
+	    __bis_SR_register(GIE);//+
+	    __bis_SR_register(LPM3);
 
 	  while (1);
 
 	
 }
+
+

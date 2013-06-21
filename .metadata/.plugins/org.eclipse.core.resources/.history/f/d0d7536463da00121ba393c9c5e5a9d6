@@ -1,0 +1,59 @@
+/*
+ * main.c
+ */
+
+#include "cc430x513x.h"
+//#include "init_dev.c"
+int Inner0,k;
+
+void main(void)
+{
+
+	WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+
+	 SetVCore(0);
+	 PMMCTL0_H = 0xA5;
+	 PMMCTL0_L |= PMMHPMRE_L;
+	 PMMCTL0_H = 0x00;
+	 PORT_Init();
+	 UCS_Init();
+
+	 LIS_INT1_INIT;
+	 I2C_LIS3DH_Init();
+
+    LIS3DH_Config()
+	//SetVCore(2);
+
+
+
+	    __bis_SR_register(LPM3+GIE);//
+
+
+	  while (1);
+
+	
+}
+#pragma vector=PORT1_VECTOR
+__interrupt void PORT1_ISR(void)
+{
+  switch(__even_in_range(P1IV, 16))
+  {
+    case  0: break;
+    case  2:
+
+              Inner0 = I2C_Mems_Read_Reg(LIS3DH_INT1_SRC);
+              I2C_Mems_Write_Reg(LIS3DH_INT1_CFG,0x20);
+              redLED1TOGG;
+              //LIS_INT1_CLEAR;
+        break;                         // P2.0 IFG
+    case  4: break;                         // P2.1 IFG
+
+    case  6: break;                         // P2.2 IFG
+    case  8: break;                         // P2.3 IFG
+    case 10: break;                         // P2.4 IFG
+    case 12: break;                         // P2.5 IFG
+    case 14: break;                         // P2.6 IFG
+    case 16: break;                         // P2.7 IFG
+
+  }
+}
