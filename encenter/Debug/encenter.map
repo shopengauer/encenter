@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.0.0                      
 ******************************************************************************
->> Linked Fri Jun 21 15:43:16 2013
+>> Linked Mon Jun 24 15:36:01 2013
 
 OUTPUT FILE NAME:   <encenter.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00008388
+ENTRY POINT SYMBOL: "_c_int00"  address: 000086e6
 
 
 MEMORY CONFIGURATION
@@ -18,8 +18,8 @@ MEMORY CONFIGURATION
   INFOC                 00001880   00000080  00000000  00000080  RWIX
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
-  RAM                   00001c00   00000ffe  00000064  00000f9a  RWIX
-  FLASH                 00008000   00007f80  000003b4  00007bcc  RWIX
+  RAM                   00001c00   00000ffe  0000016a  00000e94  RWIX
+  FLASH                 00008000   00007f80  0000080d  00007773  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
   INT02                 0000ff84   00000002  00000000  00000002  RWIX
@@ -70,12 +70,12 @@ MEMORY CONFIGURATION
   INT47                 0000ffde   00000002  00000000  00000002  RWIX
   INT48                 0000ffe0   00000002  00000000  00000002  RWIX
   INT49                 0000ffe2   00000002  00000002  00000000  RWIX
-  INT50                 0000ffe4   00000002  00000000  00000002  RWIX
-  INT51                 0000ffe6   00000002  00000000  00000002  RWIX
+  INT50                 0000ffe4   00000002  00000002  00000000  RWIX
+  INT51                 0000ffe6   00000002  00000002  00000000  RWIX
   INT52                 0000ffe8   00000002  00000000  00000002  RWIX
-  INT53                 0000ffea   00000002  00000000  00000002  RWIX
-  INT54                 0000ffec   00000002  00000000  00000002  RWIX
-  INT55                 0000ffee   00000002  00000000  00000002  RWIX
+  INT53                 0000ffea   00000002  00000002  00000000  RWIX
+  INT54                 0000ffec   00000002  00000002  00000000  RWIX
+  INT55                 0000ffee   00000002  00000002  00000000  RWIX
   INT56                 0000fff0   00000002  00000000  00000002  RWIX
   INT57                 0000fff2   00000002  00000000  00000002  RWIX
   INT58                 0000fff4   00000002  00000000  00000002  RWIX
@@ -91,38 +91,84 @@ SECTION ALLOCATION MAP
  output                                  attributes/
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
-.cinit     0    00008000    00000000     UNINITIALIZED
-
 .pinit     0    00008000    00000000     UNINITIALIZED
 
-.bss       0    00001c00    00000014     UNINITIALIZED
-                  00001c00    00000008     rts430x.lib : _lock.obj (.bss)
-                  00001c08    00000008                 : boot.obj (.bss)
-                  00001c10    00000004     init_dev.obj (.bss)
+.bss       0    00001c00    0000011a     UNINITIALIZED
+                  00001c00    00000101     rf1a.obj (.bss)
+                  00001d01    00000001     --HOLE--
+                  00001d02    00000008     rts430x.lib : _lock.obj (.bss)
+                  00001d0a    00000008                 : boot.obj (.bss)
+                  00001d12    00000006     main.obj (.bss)
+                  00001d18    00000002     init_dev.obj (.bss)
 
 .stack     0    00002bac    00000050     UNINITIALIZED
                   00002bac    00000002     rts430x.lib : boot.obj (.stack)
                   00002bae    0000004e     --HOLE--
 
-.text      0    00008000    000003b4     
-                  00008000    000000d4     init_dev.obj (.text:SetVCoreUp)
-                  000080d4    0000009a     init_dev.obj (.text:SetVCoreDown)
-                  0000816e    0000005c     init_dev.obj (.text:LIS3DH_Config)
-                  000081ca    00000042     init_dev.obj (.text:I2C_LIS3DH_Init)
-                  0000820c    00000042     init_dev.obj (.text:I2C_Mems_Read_Reg)
-                  0000824e    0000003c     init_dev.obj (.text:I2C_Mems_Write_Reg)
-                  0000828a    0000003a     init_dev.obj (.text:SetVCore)
-                  000082c4    00000036     init_dev.obj (.text:LIS3DH_Start)
-                  000082fa    00000036     init_dev.obj (.text:PORT_Init)
-                  00008330    00000030     init_dev.obj (.text:_isr:PORT1_ISR)
-                  00008360    00000028     main.obj (.text:main)
-                  00008388    00000022     rts430x.lib : boot.obj (.text:_isr:_c_int00_noinit_noexit)
-                  000083aa    00000004                 : pre_init.obj (.text:_system_pre_init)
-                  000083ae    00000004                 : exit.obj (.text:abort)
-                  000083b2    00000002                 : _lock.obj (.text:_nop)
+.text      0    00008000    000007d0     
+                  00008000    000000d4     pmm.obj (.text:SetVCoreUp)
+                  000080d4    000000c8     main.obj (.text:_isr:TIMER1_A0_ISR)
+                  0000819c    0000009c     rf1a.obj (.text:_isr:CC1101_ISR)
+                  00008238    0000009a     pmm.obj (.text:SetVCoreDown)
+                  000082d2    00000052     rf1a.obj (.text:WritePATable)
+                  00008324    0000004c     rf1a.obj (.text:RF1A_interface_error_handler)
+                  00008370    0000004c     main.obj (.text:main)
+                  000083bc    00000046     rts430x.lib : autoinit.obj (.text:_auto_init)
+                  00008402    00000042     init_dev.obj (.text:I2C_Mems_Read_Reg)
+                  00008444    0000003e     rf1a.obj (.text:ReadBurstReg)
+                  00008482    0000003c     init_dev.obj (.text:I2C_Mems_Write_Reg)
+                  000084be    0000003c     rf1a.obj (.text:Strobe)
+                  000084fa    0000003a     pmm.obj (.text:SetVCore)
+                  00008534    0000003a     rf1a.obj (.text:WriteBurstReg)
+                  0000856e    00000036     ports.obj (.text:PORT_Init)
+                  000085a4    00000030     rf1a.obj (.text:CarrerSenseOn)
+                  000085d4    00000030     rf1a.obj (.text:ReceiveOn)
+                  00008604    00000030     ports.obj (.text:_isr:PORT1_ISR)
+                  00008634    0000002e     rf1a.obj (.text:delay_RF)
+                  00008662    0000002c     rf1a.obj (.text:ReadSingleReg)
+                  0000868e    0000002c     ucs.obj (.text:UCS_Init)
+                  000086ba    0000002c     main.obj (.text:_isr:TIMER0_A1_ISR)
+                  000086e6    0000002a     rts430x.lib : boot.obj (.text:_isr:_c_int00_noexit)
+                  00008710    00000026     rf1a.obj (.text:CarrerSenseOff)
+                  00008736    00000026     rf1a.obj (.text:ReceiveOff)
+                  0000875c    00000012     rf1a.obj (.text:ResetRadioCore)
+                  0000876e    00000012     main.obj (.text:TIMER1_A0_INIT)
+                  00008780    00000012     rts430x.lib : memcpy.obj (.text:memcpy)
+                  00008792    00000010     rf1a.obj (.text:WriteBurstReg_RF1A)
+                  000087a2    0000000e     main.obj (.text:_isr:TIMER0_A0_ISR)
+                  000087b0    0000000c     rf1a.obj (.text:RF1A_interrupt_handler)
+                  000087bc    0000000a     main.obj (.text:_isr:TIMER1_A1_ISR)
+                  000087c6    00000004     rts430x.lib : pre_init.obj (.text:_system_pre_init)
+                  000087ca    00000004                 : exit.obj (.text:abort)
+                  000087ce    00000002                 : _lock.obj (.text:_nop)
+
+.const     0    000087d0    0000002f     
+                  000087d0    0000002f     rf1a.obj (.const:RF1A_REGISTER_CONFIG)
+
+.cinit     0    00008800    0000000e     
+                  00008800    00000005     main.obj (.cinit)
+                  00008805    00000001     --HOLE-- [fill = 0]
+                  00008806    00000005     rf1a.obj (.cinit)
+                  0000880b    00000001     --HOLE-- [fill = 0]
+                  0000880c    00000002     (.pad.cinit) [fill = 0]
 
 .int49     0    0000ffe2    00000002     
-                  0000ffe2    00000002     init_dev.obj (.int49)
+                  0000ffe2    00000002     ports.obj (.int49)
+
+.int50     0    0000ffe4    00000002     
+                  0000ffe4    00000002     main.obj (.int50)
+
+.int51     0    0000ffe6    00000002     
+                  0000ffe6    00000002     main.obj (.int51)
+
+.int53     0    0000ffea    00000002     
+                  0000ffea    00000002     rf1a.obj (.int53)
+
+.int54     0    0000ffec    00000002     
+                  0000ffec    00000002     main.obj (.int54)
+
+.int55     0    0000ffee    00000002     
+                  0000ffee    00000002     main.obj (.int55)
 
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x.lib : boot.obj (.reset)
@@ -231,7 +277,7 @@ address    name
 000009c4   AESASTAT
 000009c5   AESASTAT_H
 000009c4   AESASTAT_L
-000083ae   C$$EXIT
+000087ca   C$$EXIT
 000008c0   CBCTL0
 000008c1   CBCTL0_H
 000008c0   CBCTL0_L
@@ -248,6 +294,7 @@ address    name
 000008cd   CBINT_H
 000008cc   CBINT_L
 000008ce   CBIV
+0000819c   CC1101_ISR
 00000150   CRCDI
 00000152   CRCDIRB
 00000153   CRCDIRB_H
@@ -260,6 +307,8 @@ address    name
 00000156   CRCRESR
 00000157   CRCRESR_H
 00000156   CRCRESR_L
+00008710   CarrerSenseOff
+000085a4   CarrerSenseOn
 00000510   DMA0CTL
 00000511   DMA0CTL_H
 00000510   DMA0CTL_L
@@ -311,12 +360,8 @@ address    name
 00000146   FCTL4
 00000147   FCTL4_H
 00000146   FCTL4_L
-000081ca   I2C_LIS3DH_Init
-0000820c   I2C_Mems_Read_Reg
-0000824e   I2C_Mems_Write_Reg
-00001c10   Inner0
-0000816e   LIS3DH_Config
-000082c4   LIS3DH_Start
+00008402   I2C_Mems_Read_Reg
+00008482   I2C_Mems_Write_Reg
 000004c4   MAC
 000004da   MAC32H
 000004db   MAC32H_H
@@ -499,8 +544,8 @@ address    name
 0000012e   PMMRIE
 0000012f   PMMRIE_H
 0000012e   PMMRIE_L
-00008330   PORT1_ISR
-000082fa   PORT_Init
+00008604   PORT1_ISR
+0000856e   PORT_Init
 00000158   RCCTL0
 00000159   RCCTL0_H
 00000158   RCCTL0_L
@@ -594,6 +639,7 @@ address    name
 00000f3e   RF1ATXFIFO
 00000f3f   RF1ATXFIFO_H
 00000f3e   RF1ATXFIFO_L
+000087d0   RF1A_REGISTER_CONFIG
 000004ba   RTCADOWDAY
 000004bb   RTCADOWDAY_H
 000004ba   RTCADOWDAY_L
@@ -628,6 +674,13 @@ address    name
 000004b6   RTCYEAR
 000004b7   RTCYEAR_H
 000004b6   RTCYEAR_L
+00008444   ReadBurstReg
+00008662   ReadSingleReg
+00008736   ReceiveOff
+000085d4   ReceiveOn
+0000875c   ResetRadioCore
+00001c00   RxBuffer
+00001d00   RxBufferLength
 00000100   SFRIE1
 00000101   SFRIE1_H
 00000100   SFRIE1_L
@@ -682,7 +735,8 @@ address    name
 0000019a   SYSUNIV
 0000019b   SYSUNIV_H
 0000019a   SYSUNIV_L
-0000828a   SetVCore
+000084fa   SetVCore
+000084be   Strobe
 00000352   TA0CCR0
 00000354   TA0CCR1
 00000356   TA0CCR2
@@ -707,6 +761,11 @@ address    name
 000003a0   TA1EX0
 000003ae   TA1IV
 00000390   TA1R
+000087a2   TIMER0_A0_ISR
+000086ba   TIMER0_A1_ISR
+0000876e   TIMER1_A0_INIT
+000080d4   TIMER1_A0_ISR
+000087bc   TIMER1_A1_ISR
 000005d0   UCA0ABCTL
 000005c6   UCA0BRW
 000005c7   UCA0BRW_H
@@ -771,9 +830,13 @@ address    name
 00000170   UCSCTL8
 00000171   UCSCTL8_H
 00000170   UCSCTL8_L
+0000868e   UCS_Init
 0000015c   WDTCTL
 0000015d   WDTCTL_H
 0000015c   WDTCTL_L
+00008534   WriteBurstReg
+00008792   WriteBurstReg_RF1A
+000082d2   WritePATable
 00002bfc   __STACK_END
 00000050   __STACK_SIZE
 00000001   __TI_args_main
@@ -782,29 +845,37 @@ address    name
 ffffffff   __binit__
 00001c00   __bss__
 ffffffff   __c_args__
-ffffffff   __cinit__
-00001c14   __end__
-000083b4   __etext__
+00008800   __cinit__
+00001d1a   __end__
+000087d0   __etext__
 ffffffff   __pinit__
 00008000   __text__
-00008388   _c_int00
-00008388   _c_int00_noinit_noexit
-00001c08   _cleanup_ptr
-00001c0c   _dtors_ptr
-00001c00   _lock
-000083b2   _nop
+000083bc   _auto_init
+000086e6   _c_int00
+000086e6   _c_int00_noexit
+00001d0a   _cleanup_ptr
+00001d0e   _dtors_ptr
+00001d02   _lock
+000087ce   _nop
 0000fffe   _reset_vector
 00002bac   _stack
-000083aa   _system_pre_init
-00001c04   _unlock
-000083ae   abort
+000087c6   _system_pre_init
+00001d06   _unlock
+000087ca   abort
 ffffffff   binit
-ffffffff   cinit
-00001c14   end
-000083b4   etext
-00001c12   k
-00008360   main
+00008800   cinit
+00008634   delay_RF
+00001d17   duty_cycle
+00001d1a   end
+000087d0   etext
+00001d18   k
+00008370   main
+00008780   memcpy
+00001d12   p
+00001d14   packetReceived
+00001d15   packetTransmit
 ffffffff   pinit
+00001d16   state
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1446,43 +1517,68 @@ address    name
 00000f3e   RF1ATXFIFO_L
 00000f3f   RF1ATXFIFO_H
 00001c00   .bss
+00001c00   RxBuffer
 00001c00   __bss__
-00001c00   _lock
-00001c04   _unlock
-00001c08   _cleanup_ptr
-00001c0c   _dtors_ptr
-00001c10   Inner0
-00001c12   k
-00001c14   __end__
-00001c14   end
+00001d00   RxBufferLength
+00001d02   _lock
+00001d06   _unlock
+00001d0a   _cleanup_ptr
+00001d0e   _dtors_ptr
+00001d12   p
+00001d14   packetReceived
+00001d15   packetTransmit
+00001d16   state
+00001d17   duty_cycle
+00001d18   k
+00001d1a   __end__
+00001d1a   end
 00002bac   _stack
 00002bfc   __STACK_END
 00008000   .text
 00008000   __text__
-0000816e   LIS3DH_Config
-000081ca   I2C_LIS3DH_Init
-0000820c   I2C_Mems_Read_Reg
-0000824e   I2C_Mems_Write_Reg
-0000828a   SetVCore
-000082c4   LIS3DH_Start
-000082fa   PORT_Init
-00008330   PORT1_ISR
-00008360   main
-00008388   _c_int00
-00008388   _c_int00_noinit_noexit
-000083aa   _system_pre_init
-000083ae   C$$EXIT
-000083ae   abort
-000083b2   _nop
-000083b4   __etext__
-000083b4   etext
+000080d4   TIMER1_A0_ISR
+0000819c   CC1101_ISR
+000082d2   WritePATable
+00008370   main
+000083bc   _auto_init
+00008402   I2C_Mems_Read_Reg
+00008444   ReadBurstReg
+00008482   I2C_Mems_Write_Reg
+000084be   Strobe
+000084fa   SetVCore
+00008534   WriteBurstReg
+0000856e   PORT_Init
+000085a4   CarrerSenseOn
+000085d4   ReceiveOn
+00008604   PORT1_ISR
+00008634   delay_RF
+00008662   ReadSingleReg
+0000868e   UCS_Init
+000086ba   TIMER0_A1_ISR
+000086e6   _c_int00
+000086e6   _c_int00_noexit
+00008710   CarrerSenseOff
+00008736   ReceiveOff
+0000875c   ResetRadioCore
+0000876e   TIMER1_A0_INIT
+00008780   memcpy
+00008792   WriteBurstReg_RF1A
+000087a2   TIMER0_A0_ISR
+000087bc   TIMER1_A1_ISR
+000087c6   _system_pre_init
+000087ca   C$$EXIT
+000087ca   abort
+000087ce   _nop
+000087d0   RF1A_REGISTER_CONFIG
+000087d0   __etext__
+000087d0   etext
+00008800   __cinit__
+00008800   cinit
 0000fffe   _reset_vector
 ffffffff   __binit__
 ffffffff   __c_args__
-ffffffff   __cinit__
 ffffffff   __pinit__
 ffffffff   binit
-ffffffff   cinit
 ffffffff   pinit
 
-[673 symbols]
+[698 symbols]

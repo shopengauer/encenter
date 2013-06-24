@@ -1,0 +1,23 @@
+/*
+ * ports.h
+ *
+ *  Created on: 24.06.2013
+ *      Author: V.Pavlov
+ */
+
+#ifndef PORTS_H_
+#define PORTS_H_
+
+#include "cc430x513x.h"
+
+#define  LIS3DH_INT1_SRC                                0x31
+#define  LIS3DH_INT1_CFG                                0x30
+#define  redLED1TOGG                 P3OUT ^= 0x20;              P3DIR |= 0x20;
+
+void PORT_Init(void);
+
+extern unsigned int p;
+
+
+
+#endif /* PORTS_H_ */

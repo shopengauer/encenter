@@ -1,1 +1,1 @@
-"./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 
+"./ucs.obj" "./rf1a.obj" "./ports.obj" "./pmm.obj" "./main.obj" "./init_dev.obj" -l"libc.a" "../lnk_cc430f5137.cmd" 

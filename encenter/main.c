@@ -1,34 +1,314 @@
 /*
  * main.c
  */
-
+#include  <intrinsics.h>
 #include "cc430x513x.h"
-//#include "init_dev.c"
+
+
+#include "pmm.h"
+#include "ports.h"
+#include "ucs.h"
+ #include "rf1a.h"
+ #include "signal.h"
+
+extern const unsigned char RF1A_REGISTER_CONFIG[CONF_REG_SIZE];
+
+
+
+unsigned int p;
+unsigned char packetReceived;
+unsigned char packetTransmit;
+unsigned char state;
+unsigned char duty_cycle = RDC_CARRERSENSE_1;
+
+
+void TIMER0_A0_INIT(unsigned int);
+void TIMER0_A1_INIT(unsigned int);
+void TIMER1_A0_INIT(unsigned int);
+void TIMER1_A1_INIT(unsigned int);
+
 
 
 void main(void)
 {
 
-	WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+ 	WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
 
+	 p = 0;
 	 SetVCore(2);
-	 //PMMCTL0_H = 0xA5;
-	// PMMCTL0_L |= PMMHPMRE_L;
-	// PMMCTL0_H = 0x00;
-	 PORT_Init();
-//	 UCS_Init();
-	 LIS3DH_Start();
 
-	//SetVCore(2);
+	 PORT_Init();
+ 	 UCS_Init();
+	// LIS3DH_Start();
+ 	   ResetRadioCore();
+ 	  WriteBurstReg(IOCFG2, (unsigned char*)RF1A_REGISTER_CONFIG, CONF_REG_SIZE);
+ 	   WritePATable();
+
+	// TIMER0_A0_INIT(30000);
+
+
+ 	      state = RDC;
+
+
+ 	     TIMER1_A0_INIT(1000);
+
+
+ 	   ///////////////////////////////////////////////////////////////
+ 	     //   state = TRANS;     //
+ 	        TA1CCR0 = 0;       //
+ 	        TA1CCR0 =  INTER_PACKET_INTERVAL ;  //  180 ms
+
+
+
 
 
 
 	    __bis_SR_register(GIE);//+
-	    __bis_SR_register(LPM3);
+	 //   __bis_SR_register(LPM3);
+
+
+
+
+
+
+
+
+
+
 
 	  while (1);
 
 	
 }
 
+//*******************************************************************************************
+//                       TIMER0_A0
+//*******************************************************************************************
+//Timer0 A0 interrupt service routine
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0_ISR (void)
+{
+	P3OUT ^= 0x20;
+	P3DIR |= 0x20;                             // Add Offset to CCR0
+}
+
+//****************************************************************************************
+//                       TIMER1_A0
+//****************************************************************************************
+// Timer1 A0 interrupt service routine
+#pragma vector=TIMER1_A0_VECTOR
+__interrupt void TIMER1_A0_ISR (void)
+{
+
+  switch(state)
+   {
+
+     //************************************************************************************
+      //////////////////////////////////////////////////////////////////////////////
+      /// N O    R E A C I E V E    T H E    P A C K E T  I N   1 S  I N T E R V A L
+      //////////////////////////////////////////////////////////////////////////////
+
+       case  END_WAIT_AFTER_CARRERSENSE:
+
+
+
+         // state = RDC;
+
+          if( packetReceived == 0)
+          {
+              //   LED2TOGG;
+          }
+           else
+          {
+
+           //  LED3TOGG;
+
+          }
+
+
+
+
+       break;
+
+ //*****************************************************************************************************************
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    ////   R A D I O         D U T Y     C Y C L E
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+     case RDC:
+
+           if(duty_cycle == RDC_CARRERSENSE_1){
+                                TA1CCR0 = 100 ;  // 2.2
+                                 duty_cycle = RDC_LITTLE_TIMEOUT ;
+                                ResetRadioCore();
+                                 WriteBurstReg_RF1A();
+                                 WritePATable();
+                                CarrerSenseOn();
+                                P3OUT ^= 0x20;
+                               	P3DIR |= 0x20;
+                               }
+      else if (duty_cycle == RDC_LITTLE_TIMEOUT ){
+                                 TA1CCR0 = CCA_SLEEP_TIME; // 200
+                                  duty_cycle = RDC_CARRERSENSE_2;
+                                 CarrerSenseOff();
+                                 ResetRadioCore();
+                                  P3OUT &= (~0x20);   P3DIR |= 0x20;
+                                //  __bis_SR_register(GIE);
+                                //  __bis_SR_register(LPM3);
+                                  __bis_SR_register( GIE);//LPM3_bits +
+                                }
+      else if (duty_cycle == RDC_CARRERSENSE_2){
+                                 TA1CCR0 = 100 ;  // 2.2
+                                 duty_cycle = RDC_BIG_TIMEOUT;
+                                  ResetRadioCore();
+                                 WriteBurstReg_RF1A();
+                                  WritePATable();
+                                  CarrerSenseOn();
+                                 P3OUT ^= 0x20;
+                                 P3DIR |= 0x20;
+                                }
+      else if (duty_cycle == RDC_BIG_TIMEOUT){
+                                 TA1CCR0 = 65535;  // 2.2
+                                 duty_cycle = RDC_CARRERSENSE_1;
+                                  CarrerSenseOff();
+                                  ResetRadioCore();
+                                 P3OUT &= (~0x20);   P3DIR |= 0x20;
+                                __bis_SR_register(GIE);
+                                 __bis_SR_register(LPM3);
+                               //  __bis_SR_register(LPM3_bits + GIE);
+                                }
+       break;
+     ///////////////////////////////////////////////////////////////////////
+     /// T R A N S M I T I N G      P A C K E T
+     ///////////////////////////////////////////////////////////////////////
+    //********************************************************************************
+   /*  case TRANS:
+
+       ResetRadioCore();
+       WriteBurstReg_RF1A();
+       WritePATable();
+
+       ReceiveOff();
+      // CarrerSenseOff();
+
+        // Transmit( (unsigned char*)TxBuffer, sizeof TxBuffer);
+
+       //Wait for TX status to be reached before going back to low power mode
+        while((Strobe(RF_SNOP) & 0x70) != 0x20);
+        //  LED3TOGG;
+        //  LED1TOGG;
+
+      break;*/
+
+
+
+
+       /////////////////////////////////////////////////////////////////////////////
+
+    }
+}
+//****************************************************************************************
+//
+//****************************************************************************************
+
+// Timer_A1 Interrupt Vector (TAIV) handler
+#pragma vector=TIMER1_A1_VECTOR
+__interrupt void TIMER1_A1_ISR(void)
+{
+  switch(__even_in_range(TA1IV,14))
+  {
+    case  0: break;                          // No interrupt
+
+    case  2:
+
+
+
+
+    break;                          // CCR1 not used
+
+    case  4:
+
+
+
+
+
+    break;                          // CCR2 not used
+
+    case  6: break;                          // reserved
+    case  8: break;                          // reserved
+    case 10: break;                          // reserved
+    case 12: break;                          // reserved
+
+
+  case 14:
+
+
+
+  break;
+
+  default: break;
+  }
+}
+
+
+//*******************************************************************************************
+// Timer_A5 Interrupt Vector (TAIV) handler
+#pragma vector=TIMER0_A1_VECTOR
+__interrupt void TIMER0_A1_ISR(void)
+{
+  switch(__even_in_range(TA1IV,14))
+  {
+    case 0: break;
+    case 2:  TA1CCR1 += 16;                 // Add Offset to CCR1
+             break;
+    case 4:  TA1CCR2 += 100;                // Add Offset to CCR2
+             break;
+    case 6:  break;                         // CCR3 not used
+    case 8:  break;                         // CCR4 not used
+    case 10: break;                         // CCR5 not used
+    case 12: break;                         // Reserved not used
+    case 14: P1OUT ^= 0x01;                 // overflow
+             break;
+    default: break;
+ }
+
+}
+//*******************************************************************************************
+//*******************************************************************************************
+
+void TIMER0_A0_INIT(unsigned int interval)
+{
+   TA0CCR0 =  interval;
+  TA0CTL = TASSEL_1 + MC_1 + TACLR;// + TAIE;
+  TA0CCTL0 = CCIE;
+
+
+}
+void TIMER0_A1_INIT(unsigned int interval)
+{
+
+
+
+}
+
+
+void TIMER1_A0_INIT(unsigned int interval)
+{
+   TA1CCR0 =  interval;
+  TA1CTL = TASSEL_1 + MC_1 + TACLR;// + TAIE;
+  TA1CCTL0 = CCIE;
+
+
+}
+
+ void TIMER1_A1_INIT(unsigned int interval)
+{
+
+
+
+
+}
 

@@ -10,301 +10,15 @@
 
 
 
-void PORT_Init(void)
-{
 
-	   P1DIR = 0x1c; // Led out
-	   P1OUT = 0x1c;
 
-	   PJOUT = 0x00;////////////////////////0x00
-	   PJDIR = 0xff;//////////////////////// 0xff
 
-	   P2SEL = 0x00;
-	   P2OUT = 0x08;
-	   P2DIR = 0xff;
-	   P2REN = 0x00;
-
-
-	   P3DIR = 0x00;
-	   P3OUT = 0xff;
-
-	  // P5SEL = 0x03;
-	 //  P5DIR = 0x03;
-	 //  P3OUT = 0x00;
-
-
-	   // PMMCTL0_H = 0xA5;
-	   //   SVSMHCTL = 0;
-	   //   SVSMLCTL = 0;
-	   //   PMMCTL0_H = 0x00;
-
-	      P5SEL |= 0x03;                            // Port select XT1
-
-}
-
-
-void UCS_Init(void)
-{
-
-
-    UCSCTL6 |= SMCLKOFF;
-    UCSCTL6 |= XCAP_3;                        // Internal load cap
-    // UCSCTL6 &= ~XT2OFF;                       // Turn on XT2 even if RF core in SLEEP
-   UCSCTL6 &= ~XT1OFF;
-   UCSCTL6 &= ~XT1DRIVE_3;
-
-
-   // Loop until XT1,XT2 & DCO stabilizes
-     do
-     {
-       UCSCTL7 &= ~(XT2OFFG + XT1LFOFFG + DCOFFG);
-                                               // Clear XT2,XT1,DCO fault flags
-       SFRIFG1 &= ~OFIFG;                      // Clear fault flags
-     }while (SFRIFG1&OFIFG);                   // Test oscillator fault flag
-
-     // Select SMCLK, ACLK source and DCO source
-     UCSCTL4 = SELA__XT1CLK + SELS__DCOCLKDIV + SELM__DCOCLKDIV;
-
-
-
-
-
-}
-
-
-void PMM_Init(void)
-
-{
-
-   int level = 2;
-
-   PMMCTL0_H = 0xA5; //
-
-  PMMRIE &= ~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE |
-                SVMHIE | SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
-
-  PMMIFG = 0x00;
-  SVSMHCTL = SVMHE | SVSHE | (SVSMHRRL0 * level) | (SVSHRVL0 * level) | SVSHMD;
-  SVSMLCTL = SVSLE | SVMLE | (SVSMLRRL0 * level);
-  while((PMMIFG & SVSMLDLYIFG) == 0);
- PMMIFG &= ~(SVMLVLRIFG + SVMLIFG);
- PMMCTL0_L = (PMMCOREV0 * level ) | PMMHPMRE;
-
- if((PMMIFG & SVMLIFG))
-   while((PMMIFG & SVMLVLRIFG))
- SVSMLCTL = SVSLE + SVSLRVL0 * level + SVMLE + SVSMLRRL0 * level;
-
- PMMRIE = SVMHIE | SVMLIE;
- PMMIFG &= ~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
- PMMCTL0_H = 0x00;
-
-}
-
-
-static uint16_t SetVCoreUp(uint8_t level)
-{
-    uint16_t PMMRIE_backup, SVSMHCTL_backup, SVSMLCTL_backup;
-
-    // The code flow for increasing the Vcore has been altered to work around
-    // the erratum FLASH37.
-    // Please refer to the Errata sheet to know if a specific device is affected
-    // DO NOT ALTER THIS FUNCTION
-
-    // Open PMM registers for write access
-    PMMCTL0_H = 0xA5;
-
-    // Disable dedicated Interrupts
-    // Backup all registers
-    PMMRIE_backup = PMMRIE;
-    PMMRIE &= ~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE |
-                SVMHIE | SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
-    SVSMHCTL_backup = SVSMHCTL;
-    SVSMLCTL_backup = SVSMLCTL;
-
-    // Clear flags
-    PMMIFG = 0;
-
-    // Set SVM highside to new level and check if a VCore increase is possible
-    SVSMHCTL = SVMHE | SVSHE | (SVSMHRRL0 * level);
-
-    // Wait until SVM highside is settled
-    while ((PMMIFG & SVSMHDLYIFG) == 0) ;
-
-    // Clear flag
-    PMMIFG &= ~SVSMHDLYIFG;
-
-    // Check if a VCore increase is possible
-    if ((PMMIFG & SVMHIFG) == SVMHIFG){     // -> Vcc is too low for a Vcore increase
-        // recover the previous settings
-        PMMIFG &= ~SVSMHDLYIFG;
-        SVSMHCTL = SVSMHCTL_backup;
-
-        // Wait until SVM highside is settled
-        while ((PMMIFG & SVSMHDLYIFG) == 0) ;
-
-        // Clear all Flags
-        PMMIFG &= ~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
-
-        PMMRIE = PMMRIE_backup;             // Restore PMM interrupt enable register
-        PMMCTL0_H = 0x00;                   // Lock PMM registers for write access
-        return PMM_STATUS_ERROR;            // return: voltage not set
-    }
-
-    // Set also SVS highside to new level
-    // Vcc is high enough for a Vcore increase
-    SVSMHCTL |= (SVSHRVL0 * level);
-
-    // Wait until SVM highside is settled
-    while ((PMMIFG & SVSMHDLYIFG) == 0) ;
-
-    // Clear flag
-    PMMIFG &= ~SVSMHDLYIFG;
-
-    // Set VCore to new level
-    PMMCTL0_L = PMMCOREV0 * level;
-
-    // Set SVM, SVS low side to new level
-    SVSMLCTL = SVMLE | (SVSMLRRL0 * level) | SVSLE | (SVSLRVL0 * level);
-
-    // Wait until SVM, SVS low side is settled
-    while ((PMMIFG & SVSMLDLYIFG) == 0) ;
-
-    // Clear flag
-    PMMIFG &= ~SVSMLDLYIFG;
-    // SVS, SVM core and high side are now set to protect for the new core level
-
-    // Restore Low side settings
-    // Clear all other bits _except_ level settings
-    SVSMLCTL &= (SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
-
-    // Clear level settings in the backup register,keep all other bits
-    SVSMLCTL_backup &= ~(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
-
-    // Restore low-side SVS monitor settings
-    SVSMLCTL |= SVSMLCTL_backup;
-
-    // Restore High side settings
-    // Clear all other bits except level settings
-    SVSMHCTL &= (SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
-
-    // Clear level settings in the backup register,keep all other bits
-    SVSMHCTL_backup &= ~(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
-
-    // Restore backup
-    SVSMHCTL |= SVSMHCTL_backup;
-
-    // Wait until high side, low side settled
-    while (((PMMIFG & SVSMLDLYIFG) == 0) && ((PMMIFG & SVSMHDLYIFG) == 0)) ;
-
-    // Clear all Flags
-    PMMIFG &= ~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
-
-    PMMRIE = PMMRIE_backup;                 // Restore PMM interrupt enable register
-    PMMCTL0_H = 0x00;                       // Lock PMM registers for write access
-
-    return PMM_STATUS_OK;
-}
-
-/*******************************************************************************
- * \brief  Decrease Vcore by one level
- *
- * \param  level    Level to which Vcore needs to be decreased
- * \return status   Success/failure
- ******************************************************************************/
-
-static uint16_t SetVCoreDown(uint8_t level)
-{
-    uint16_t PMMRIE_backup, SVSMHCTL_backup, SVSMLCTL_backup;
-
-    // The code flow for decreasing the Vcore has been altered to work around
-    // the erratum FLASH37.
-    // Please refer to the Errata sheet to know if a specific device is affected
-    // DO NOT ALTER THIS FUNCTION
-
-    // Open PMM registers for write access
-    PMMCTL0_H = 0xA5;
-
-    // Disable dedicated Interrupts
-    // Backup all registers
-    PMMRIE_backup = PMMRIE;
-    PMMRIE &= ~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE |
-                SVMHIE | SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
-    SVSMHCTL_backup = SVSMHCTL;
-    SVSMLCTL_backup = SVSMLCTL;
-
-    // Clear flags
-    PMMIFG &= ~(SVMHIFG | SVSMHDLYIFG | SVMLIFG | SVSMLDLYIFG);
-
-    // Set SVM, SVS high & low side to new settings in normal mode
-    SVSMHCTL = SVMHE | (SVSMHRRL0 * level) | SVSHE | (SVSHRVL0 * level);
-    SVSMLCTL = SVMLE | (SVSMLRRL0 * level) | SVSLE | (SVSLRVL0 * level);
-
-    // Wait until SVM high side and SVM low side is settled
-    while ((PMMIFG & SVSMHDLYIFG) == 0 || (PMMIFG & SVSMLDLYIFG) == 0) ;
-
-    // Clear flags
-    PMMIFG &= ~(SVSMHDLYIFG + SVSMLDLYIFG);
-    // SVS, SVM core and high side are now set to protect for the new core level
-
-    // Set VCore to new level
-    PMMCTL0_L = PMMCOREV0 * level;
-
-    // Restore Low side settings
-    // Clear all other bits _except_ level settings
-    SVSMLCTL &= (SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
-
-    // Clear level settings in the backup register,keep all other bits
-    SVSMLCTL_backup &= ~(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
-
-    // Restore low-side SVS monitor settings
-    SVSMLCTL |= SVSMLCTL_backup;
-
-    // Restore High side settings
-    // Clear all other bits except level settings
-    SVSMHCTL &= (SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
-
-    // Clear level settings in the backup register, keep all other bits
-    SVSMHCTL_backup &= ~(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
-
-    // Restore backup
-    SVSMHCTL |= SVSMHCTL_backup;
-
-    // Wait until high side, low side settled
-    while (((PMMIFG & SVSMLDLYIFG) == 0) && ((PMMIFG & SVSMHDLYIFG) == 0)) ;
-
-    // Clear all Flags
-    PMMIFG &= ~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
-
-    PMMRIE = PMMRIE_backup;                // Restore PMM interrupt enable register
-    PMMCTL0_H = 0x00;                      // Lock PMM registers for write access
-    return PMM_STATUS_OK;                  // Return: OK
-}
-
-uint16_t SetVCore(uint8_t level)
-{
-    uint16_t actlevel;
-    uint16_t status = 0;
-
-    level &= PMMCOREV_3;                   // Set Mask for Max. level
-    actlevel = (PMMCTL0 & PMMCOREV_3);     // Get actual VCore
-                                           // step by step increase or decrease
-    while ((level != actlevel) && (status == 0)) {
-        if (level > actlevel){
-            status = SetVCoreUp(++actlevel);
-        }
-        else {
-            status = SetVCoreDown(--actlevel);
-        }
-    }
-
-    return status;
-}
 
 
 void I2C_Mems_Write_Reg(unsigned int reg, unsigned int data)
 {
 
-        unsigned int i;
+         unsigned int i;
 
                 while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
                     UCB0CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
@@ -339,7 +53,7 @@ unsigned int I2C_Mems_Read_Reg(unsigned int reg)
 
             RXData =  UCB0RXBUF;  // clean the buffer
 
-        while(!(UCB0IFG & UCTXIFG));    // wait TXFLAG
+            while(!(UCB0IFG & UCTXIFG));    // wait TXFLAG
             UCB0TXBUF = reg;
 
 
@@ -362,10 +76,10 @@ unsigned int I2C_Mems_Read_Reg(unsigned int reg)
 
 void I2C_LIS3DH_Init(void)
 {
-                CS_LIS3DH_ON;
+                 CS_LIS3DH_ON;
                   UCB0CTL1 |= UCSWRST;                      // Enable SW reset
                   UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;     // I2C Master, synchronous mode,
-                  UCB0CTL1 = UCSSEL_2 /*+ UCTR*/ + UCSWRST; // Use SMCLK, keep SW reset
+                  UCB0CTL1 = UCSSEL_2  + UCSWRST; // Use SMCLK, keep SW reset + UCTR
                   UCB0STAT = 0x00;
                   UCB0BR0 = 12;                             // fSCL = SMCLK/12 = ~100kHz
                   UCB0BR1 = 0;
@@ -375,14 +89,12 @@ void I2C_LIS3DH_Init(void)
                   UCB0CTL1 &= ~UCSWRST;                     // Clear SW reset, resume operation
                 //  UCB0IE |= UCTXIE + UCRXIE + UCNACKIFG;                // Enable TX and RX interrupt
 
-
-
 }
 
 void I2C_M24C64_Init(void)
 {
 
-              CS_LIS3DH_OFF;
+                  CS_LIS3DH_OFF;
                   UCB0CTL1 |= UCSWRST;                      // Enable SW reset
                   UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;     // I2C Master, synchronous mode,
                   UCB0CTL1 = UCSSEL_2 /*+ UCTR*/ + UCSWRST; // Use SMCLK, keep SW reset
@@ -394,7 +106,6 @@ void I2C_M24C64_Init(void)
                   P1SEL |= UCB0SDA + UCB0SCL;
                   UCB0CTL1 &= ~UCSWRST;                     // Clear SW reset, resume operation
                 //  UCB0IE |= UCTXIE + UCRXIE + UCNACKIFG;                // Enable TX and RX interrupt
-
 
 }
 
@@ -427,32 +138,6 @@ void LIS3DH_Start(void)
 }
 
 
-
-
-#pragma vector=PORT1_VECTOR
-__interrupt void PORT1_ISR(void)
-{
-  switch(__even_in_range(P1IV, 16))
-  {
-    case  0: break;
-    case  2:
-
-              Inner0 = I2C_Mems_Read_Reg(LIS3DH_INT1_SRC);
-              I2C_Mems_Write_Reg(LIS3DH_INT1_CFG,0x20);
-              redLED1TOGG;
-              //LIS_INT1_CLEAR;
-        break;                         // P2.0 IFG
-    case  4: break;                         // P2.1 IFG
-
-    case  6: break;                         // P2.2 IFG
-    case  8: break;                         // P2.3 IFG
-    case 10: break;                         // P2.4 IFG
-    case 12: break;                         // P2.5 IFG
-    case 14: break;                         // P2.6 IFG
-    case 16: break;                         // P2.7 IFG
-
-  }
-}
 
 
 

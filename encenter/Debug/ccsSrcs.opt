@@ -1,1 +1,1 @@
-"../init_dev.c" "../main.c" 
+"../init_dev.c" "../main.c" "../pmm.c" "../ports.c" "../rf1a.c" "../ucs.c" 

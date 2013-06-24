@@ -1,0 +1,40 @@
+/*
+ * main.c
+ */
+#include  <intrinsics.h>
+#include "cc430x513x.h"
+// #include "rf1a.h"
+// #include "signal.h"
+
+unsigned int p;
+unsigned char packetReceived;
+unsigned char packetTransmit;
+unsigned char state;
+
+
+
+
+
+void main(void)
+{
+
+	WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+
+	 p = 0;
+	 SetVCore(2);
+
+	 PORT_Init();
+ 	 UCS_Init();
+	// LIS3DH_Start();
+
+ 	Init_RF1A();
+
+
+
+	    __bis_SR_register(GIE);//+
+	    __bis_SR_register(LPM3);
+
+	  while (1);
+
+	
+}

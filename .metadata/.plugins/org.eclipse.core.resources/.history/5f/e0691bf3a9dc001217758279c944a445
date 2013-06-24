@@ -1,0 +1,40 @@
+/*
+ * ports.c
+ *
+ *  Created on: 24.06.2013
+ *      Author: V.Pavlov
+ */
+
+
+
+void PORT_Init(void)
+{
+
+	   P1DIR = 0x1c; // Led out
+	   P1OUT = 0x1c;
+
+	   PJOUT = 0x00;////////////////////////0x00
+	   PJDIR = 0xff;//////////////////////// 0xff
+
+	   P2SEL = 0x00;
+	   P2OUT = 0x08;
+	   P2DIR = 0xff;
+	   P2REN = 0x00;
+
+
+	   P3DIR = 0x00;
+	   P3OUT = 0xff;
+
+	  // P5SEL = 0x03;
+	 //  P5DIR = 0x03;
+	 //  P3OUT = 0x00;
+
+
+	   // PMMCTL0_H = 0xA5;
+	   //   SVSMHCTL = 0;
+	   //   SVSMLCTL = 0;
+	   //   PMMCTL0_H = 0x00;
+
+	      P5SEL |= 0x03;                            // Port select XT1
+
+}

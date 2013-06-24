@@ -1,0 +1,16 @@
+/*
+ * ports.h
+ *
+ *  Created on: 24.06.2013
+ *      Author: V.Pavlov
+ */
+
+#ifndef PORTS_H_
+#define PORTS_H_
+
+#include "cc430x513x.h"
+
+
+void PORT_Init(void);
+
+#endif /* PORTS_H_ */
